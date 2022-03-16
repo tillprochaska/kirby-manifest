@@ -26,7 +26,5 @@ class TestCase extends BaseTestCase
                 'tillprochaska.manifest.path' => __DIR__.'/support/manifest.json',
             ],
         ]);
-
-        $this->kirby->extend(require __DIR__.'/../plugin/extensions.php');
     }
 }
