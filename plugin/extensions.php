@@ -5,13 +5,19 @@ use Kirby\Http\Url;
 use TillProchaska\KirbyManifest\Manifest;
 
 return [
+    'siteMethods' => [
+        'manifest' => function () {
+            return new Manifest(option('tillprochaska.manifest.path'));
+        },
+    ],
+
     'components' => [
         'css' => function (App $kirby, string $url, $options = null): string {
             if (Url::isAbsolute($url)) {
                 return $url;
             }
 
-            return (new Manifest(option('tillprochaska.manifest.path')))->url($url);
+            return site()->manifest()->url($url);
         },
 
         'js' => function (App $kirby, string $url, $options = null): string {
@@ -19,7 +25,7 @@ return [
                 return $url;
             }
 
-            return (new Manifest(option('tillprochaska.manifest.path')))->url($url);
+            return site()->manifest()->url($url);
         },
     ],
 ];
